@@ -34,6 +34,9 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
+      - name: Install root dependencies
+        run: yarn
+
       - name: Build app
         run: yarn build
 
