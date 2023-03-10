@@ -1,19 +1,56 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld>
+      <template v-slot:footer>footer</template>
+      <template v-slot:body>body</template>
+      <template v-slot:header>header</template>
+    </HelloWorld>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
-  name: 'App',
+  name: "App",
+
   components: {
-    HelloWorld
-  }
-}
+    HelloWorld,
+  },
+
+  data() {
+    return {
+      counter: 0,
+      user: {
+        person: {
+          age: 8,
+        },
+      },
+    };
+  },
+
+  watch: {
+    counter(newValue) {
+      console.log("int_21h-logger-new", newValue);
+    },
+    user: {
+      handler(newValue) {
+        console.log("int_21h-logger-newValue", newValue);
+      },
+      deep: true,
+    },
+  },
+
+  methods: {
+    handleInput(event) {
+      this.firstName = event.target.value;
+    },
+    handleClick(value) {
+      console.log(value);
+      this.user.person.age++;
+    },
+  },
+};
 </script>
 
 <style>
